@@ -1,11 +1,8 @@
 <?php
 
-// La clase Cliente representa a un cliente y sabe guardarse, buscarse,
-// actualizarse y eliminarse de la base de datos (CRUD).
 class Cliente{
     private $conexion;
 
-    // Atributos del cliente (encapsulados: solo se cambian con los setters)
     private $id;
     private $nombre;
     private $apellido;

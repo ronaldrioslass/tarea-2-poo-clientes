@@ -8,14 +8,11 @@ const tituloFormulario = document.getElementById("tituloFormulario")
 const botonGuardar = document.getElementById("botonGuardar")
 const botonCancelar = document.getElementById("botonCancelar")
 
-// tipo puede ser "success" (verde) o "danger" (rojo)
 function mostrarMensaje(texto, tipo) {
     mensaje.textContent = texto;
     mensaje.className = "alert alert-" + tipo;
 }
 
-// Llama a la API y devuelve la respuesta en JSON.
-// Si la API responde con error, lanza un Error con el mensaje del servidor.
 async function llamarAPI(parametros, opciones = {}) {
     const respuesta = await fetch(API + "?" + parametros, opciones);
     const resultado = await respuesta.json();
@@ -25,7 +22,6 @@ async function llamarAPI(parametros, opciones = {}) {
     return resultado;
 }
 
-// ----- R: listar -----
 
 async function todos() {
     try {
@@ -89,7 +85,6 @@ function crearBoton(texto, descripcion, clases, alHacerClic) {
     return boton;
 }
 
-// ----- C y U: guardar o actualizar -----
 
 formulario.addEventListener("submit", async function(event) {
 
@@ -114,7 +109,6 @@ formulario.addEventListener("submit", async function(event) {
     }
 });
 
-// Trae el cliente desde la API y pone sus datos en el formulario
 async function editar(id) {
     try {
         const cliente = await llamarAPI("accion=uno&id=" + id);
@@ -145,7 +139,6 @@ function salirModoEdicion() {
 
 botonCancelar.addEventListener("click", salirModoEdicion);
 
-// ----- D: eliminar -----
 
 async function eliminar(cliente) {
     const confirmado = confirm("¿Seguro que deseas eliminar a " + cliente.nombre + " " + cliente.apellido + "?");
@@ -164,7 +157,6 @@ async function eliminar(cliente) {
 
         mostrarMensaje("Cliente eliminado correctamente", "success");
 
-        // Si justo estábamos editando a este cliente, limpiamos el formulario
         if (campoId.value == cliente.id) {
             salirModoEdicion();
         }
@@ -174,7 +166,6 @@ async function eliminar(cliente) {
     }
 }
 
-// ----- Crear la tabla en la base de datos -----
 
 async function crearTabla() {
     try {

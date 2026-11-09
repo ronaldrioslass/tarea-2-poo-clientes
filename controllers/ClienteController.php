@@ -77,7 +77,6 @@ class ClienteController{
         ]);
     }
 
-    // Pasa los datos del formulario al objeto Cliente usando sus setters
     private function llenarCliente($datos){
         $this->cliente->setNombre($datos["nombre"]);
         $this->cliente->setApellido($datos["apellido"]);
